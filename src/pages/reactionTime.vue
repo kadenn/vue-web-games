@@ -1,8 +1,13 @@
 <template>
-  <h1>Reaction Time ⏲️</h1>
-  <p>Test your reaction skills to see how fast you are</p>
+  <div class="card">
+    <h1>Reaction Time ⏲️</h1>
+    <p>Test your reaction skills to see how fast you are</p>
 
-  <button class="button" @click="startGame" :disabled="isPlaying">Play</button>
+    <button class="button" @click="startGame" :disabled="isPlaying">
+      Play
+    </button>
+  </div>
+
   <p v-if="isPlaying">Get Ready...</p>
   <Block v-if="isPlaying" :delay="delay" @end="endGame" />
   <Results v-if="showResults" :score="score" />

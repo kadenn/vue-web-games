@@ -36,8 +36,8 @@ onMounted(() => {
 
 <style>
 .block {
-  width: 300px;
-  border-radius: 20px;
+  min-width: 300px;
+  border-radius: 10px;
   background: #0faf87;
   color: white;
   text-align: center;
@@ -47,6 +47,6 @@ onMounted(() => {
 }
 
 .block:hover {
-  background-color: #54be92;
+  background-color: #21c17e;
 }
 </style>
