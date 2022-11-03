@@ -1,47 +1,56 @@
 <template>
-  <div class="m-7 border-2 rounded-md border-black p-3 bg-stone-300">
-    <h1>Reaction Time ⏲️</h1>
-    <p>Test your reaction skills to see how fast you are</p>
-    <p>{{ reactionTime }}</p>
+  <div class="mx-2 sm:mx-auto max-w-2xl my-4 flex flex-col text-center">
+    <div class="bg-stone-200 rounded-lg shadow-lg p-4 border-2 border-black">
+      <h1 class="mb-3 text-2xl sm:text-3xl font-semibold">
+        Reaksiyon testi ⚡
+      </h1>
+
+      <p class="mb-3 text-xl">
+        Ne kadar hızlı olduğunu görmek için reaksiyon becerilerini test et!
+      </p>
+
+      <button
+        @click="startGame"
+        class="flex justify-center py-2 px-10 mx-auto mt-6 text-xl sm:text-3xl font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+      >
+        Oyna
+      </button>
+    </div>
+
+    <div
+      class="my-2 text-3xl sm:text-4xl font-semibold text-center"
+      v-if="isPlaying"
+    >
+      <button
+        class="bg-gray-400 border-4 border-gray-400 rounded-md h-72 w-full"
+        v-if="showTooSoon"
+      >
+        Çok erken 🐔
+      </button>
+      <button
+        class="bg-red-600 border-4 border-red-600 rounded-md h-72 w-full"
+        v-else-if="showWaitForGreen"
+        @click="tooSoon"
+      >
+        Yeşilin çıkmasını bekle ⏳
+      </button>
+      <button
+        class="bg-green-400 border-4 border-green-400 rounded-md h-72 w-full"
+        v-else-if="showClickNow"
+        @click="stopTimer"
+      >
+        Şimdi tıkla ⌛
+      </button>
+    </div>
+
     <button
-      class="flex justify-center p-2 mt-3 text-lg px-10 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-      @click="startGame"
-      :disabled="isPlaying"
+      v-else-if="showResults"
+      class="my-2 text-2xl sm:text-3xl font-semibold text-center bg-stone-200 rounded-lg shadow-lg p-4 border-2 border-black h-72 w-full"
     >
-      Play
+      <p>{{ rank }}</p>
+      <br />
+      <p>{{ reactionTime }} ms</p>
     </button>
-  </div>
-  <div v-if="isPlaying" class="m-7 h-1/2">
-    <div
-      class="bg-gray-600 border-4 border-gray-600 p-3 h-full rounded-md"
-      v-if="showTooSoon"
-      @click="startGame"
-    >
-      Too soon!
-    </div>
-    <div
-      class="bg-red-600 border-4 border-red-600 p-3 h-full rounded-md"
-      v-else-if="showWaitForGreen"
-      @click="tooSoon"
-    >
-      Wait for green...
-    </div>
-    <div
-      class="bg-green-400 border-4 border-green-400 p-3 h-full rounded-md"
-      v-else-if="showClickNow"
-      @click="stopTimer"
-    >
-      Click!
-    </div>
-  </div>
-  <div
-    v-else-if="showResults"
-    @click="startGame"
-    class="m-7 border-2 rounded-md border-black p-3 h-1/2 bg-stone-300"
-  >
-    <p>Reaction Time: {{ reactionTime }} ms</p>
-    <p>{{ rank }}</p>
-    <p>Click to play again!</p>
   </div>
 </template>
 
@@ -67,6 +76,9 @@ function tooSoon() {
 }
 
 function startGame() {
+  clearTimeout(timeout.value);
+  clearInterval(interval.value);
+  reactionTime.value = 0;
   isPlaying.value = true;
   showTooSoon.value = false;
   showWaitForGreen.value = true;
@@ -87,16 +99,19 @@ function stopTimer() {
   clearInterval(interval.value);
   isPlaying.value = false;
   showResults.value = true;
+
   if (reactionTime.value < 100) {
-    rank.value = "Impressive!";
-  } else if (reactionTime.value < 250) {
-    rank.value = "Ninja fingers!";
+    rank.value = "İnanılmaz ötesi 🐈";
+  } else if (reactionTime.value < 200) {
+    rank.value = "Ninja parmaklar 🥷🏼";
+  } else if (reactionTime.value < 300) {
+    rank.value = "Hızlı refleksler 🐿️";
   } else if (reactionTime.value < 400) {
-    rank.value = "Rapid reflexes!";
-  } else if (reactionTime.value < 550) {
-    rank.value = "Snail pace...";
+    rank.value = "Ortalama refleksler 🐒";
+  } else if (reactionTime.value < 500) {
+    rank.value = "Yavaş kaldın 🐼";
   } else {
-    rank.value = "Slow poke...";
+    rank.value = "Salyangoz hızı 🐌";
   }
 }
 </script>
