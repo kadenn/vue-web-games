@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen flex flex-col">
     <HeaderNav />
-    <main class="flex-grow h-full w-full m-0 p-0 bg-gray-100">
+    <main class="flex-grow m-0 p-0 bg-gray-100">
       <router-view class="flex justify-center" />
     </main>
     <FooterNav />

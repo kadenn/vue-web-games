@@ -6,7 +6,7 @@
       </h1>
 
       <p class="mb-3 text-xl">
-        Ne kadar hızlı olduğunu görmek için reaksiyon becerilerini test et!
+        Ne kadar hızlı olduğunu görmek için reaksiyon becerilerini test et
       </p>
 
       <button
