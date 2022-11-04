@@ -78,22 +78,21 @@
           Kaydedildi
         </button>
       </div>
-
-      <table class="table-auto mx-auto my-3 text-xl">
-        <thead>
-          <tr>
-            <th class="underline">isim</th>
-            <th class="underline">skor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="score in scores" :key="score.id">
-            <td>{{ score.name }}</td>
-            <td>{{ score.score }} ms</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
+    <table class="table-auto mx-auto my-3 text-xl">
+      <thead>
+        <tr>
+          <th class="underline">isim</th>
+          <th class="underline">skor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="score in scores" :key="score.id">
+          <td>{{ score.name }}</td>
+          <td>{{ score.score }} ms</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -168,7 +167,7 @@ function stopTimer() {
 }
 
 async function getScores() {
-  const res = await fetch(API_URL, { referrerPolicy: "unsafe_url" });
+  const res = await fetch(API_URL);
   const scores = await res.json();
   return scores?.items;
 }
@@ -181,7 +180,6 @@ async function saveScore() {
 
   await fetch(API_URL, {
     method: "POST",
-    referrerPolicy: "unsafe_url",
     headers: {
       "Content-Type": "application/json",
     },
