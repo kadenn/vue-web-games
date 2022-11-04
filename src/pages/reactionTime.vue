@@ -168,7 +168,7 @@ function stopTimer() {
 }
 
 async function getScores() {
-  const res = await fetch(API_URL);
+  const res = await fetch(API_URL, { referrerPolicy: "unsafe_url" });
   const scores = await res.json();
   return scores?.items;
 }
@@ -181,6 +181,7 @@ async function saveScore() {
 
   await fetch(API_URL, {
     method: "POST",
+    referrerPolicy: "unsafe_url",
     headers: {
       "Content-Type": "application/json",
     },
