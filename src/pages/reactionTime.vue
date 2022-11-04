@@ -99,6 +99,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+const apiUrl = import.meta.env.VITE_API_URL;
 const interval = ref(null);
 const timeout = ref(null);
 const reactionTime = ref(0);
@@ -112,7 +113,6 @@ const rank = ref(null);
 const scores = ref([]);
 const name = ref("");
 const scoreSaved = ref(false);
-const API_URL = import.meta.env.VITE_API_URL;
 
 onMounted(async () => {
   scores.value = await getScores();
@@ -167,7 +167,7 @@ function stopTimer() {
 }
 
 async function getScores() {
-  const res = await fetch(API_URL);
+  const res = await fetch(apiUrl);
   const scores = await res.json();
   return scores?.items;
 }
@@ -178,7 +178,7 @@ async function saveScore() {
     return;
   }
 
-  await fetch(API_URL, {
+  await fetch(apiUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
