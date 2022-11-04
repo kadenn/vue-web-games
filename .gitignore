@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 # Pocketbase
-pocketbase_mac
-pb_data
+pocketbase

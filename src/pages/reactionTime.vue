@@ -113,6 +113,7 @@ const rank = ref(null);
 const scores = ref([]);
 const userName = ref("");
 const scoreSaved = ref(false);
+const API_URL = import.meta.env.VITE_API_URL;
 
 onMounted(async () => {
   scores.value = await getScores();
@@ -167,11 +168,9 @@ function stopTimer() {
 }
 
 async function getScores() {
-  const res = await fetch(
-    "http://127.0.0.1:8090/api/collections/reaction_scores/records"
-  );
-  const data = await res.json();
-  return data?.items;
+  const res = await fetch(API_URL);
+  const scores = await res.json();
+  return scores?.items;
 }
 
 async function saveScore() {
@@ -180,7 +179,7 @@ async function saveScore() {
     return;
   }
 
-  await fetch("http://127.0.0.1:8090/api/collections/reaction_scores/records", {
+  await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
