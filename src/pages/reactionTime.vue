@@ -58,7 +58,7 @@
           required
           type="text"
           class="text-xl rounded-md px-1 mx-1"
-          v-model="userName"
+          v-model="name"
           placeholder="Ninja Utku"
         />
         <span class="mb-3 text-xl">desinler!</span>
@@ -88,7 +88,7 @@
         </thead>
         <tbody>
           <tr v-for="score in scores" :key="score.id">
-            <td>{{ score.user_name }}</td>
+            <td>{{ score.name }}</td>
             <td>{{ score.score }} ms</td>
           </tr>
         </tbody>
@@ -111,7 +111,7 @@ const showClickNow = ref(false);
 const showTooSoon = ref(false);
 const rank = ref(null);
 const scores = ref([]);
-const userName = ref("");
+const name = ref("");
 const scoreSaved = ref(false);
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -174,7 +174,7 @@ async function getScores() {
 }
 
 async function saveScore() {
-  if (!userName.value) {
+  if (!name.value) {
     alert("İsim girmeyi unuttun!");
     return;
   }
@@ -185,7 +185,7 @@ async function saveScore() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      user_name: userName.value,
+      name: name.value,
       score: reactionTime.value,
     }),
   });
