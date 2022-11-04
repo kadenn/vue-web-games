@@ -21,12 +21,12 @@
       class="my-2 text-3xl sm:text-4xl font-semibold text-center"
       v-if="isPlaying"
     >
-      <button
-        class="bg-gray-400 border-4 border-gray-400 rounded-md h-72 w-full"
+      <div
+        class="bg-gray-400 border-4 border-gray-400 rounded-md h-72 w-full flex flex-col justify-center"
         v-if="showTooSoon"
       >
         Çok erken 🐔
-      </button>
+      </div>
       <button
         class="bg-red-600 border-4 border-red-600 rounded-md h-72 w-full"
         v-else-if="showWaitForGreen"
@@ -43,19 +43,62 @@
       </button>
     </div>
 
-    <button
-      v-else-if="showResults"
-      class="my-2 text-2xl sm:text-3xl font-semibold text-center bg-stone-200 rounded-lg shadow-lg p-4 border-2 border-black h-72 w-full"
-    >
-      <p>{{ rank }}</p>
-      <br />
-      <p>{{ reactionTime }} ms</p>
-    </button>
+    <div v-else-if="showResults">
+      <div
+        class="my-2 text-2xl sm:text-3xl font-semibold text-center bg-stone-200 rounded-lg shadow-lg p-4 border-2 border-black h-72 w-full flex flex-col justify-center"
+      >
+        <p>{{ rank }}</p>
+        <br />
+        <p>{{ reactionTime }} ms</p>
+      </div>
+
+      <div class="bg-stone-200 rounded-lg shadow-lg p-4 border-2 border-black">
+        <span class="mb-3 text-xl">Bundan sonra bana</span>
+        <input
+          required
+          type="text"
+          class="text-xl rounded-md px-1 mx-1"
+          v-model="userName"
+          placeholder="Ninja Utku"
+        />
+        <span class="mb-3 text-xl">desinler!</span>
+
+        <button
+          v-if="!scoreSaved"
+          @click="saveScore()"
+          class="flex justify-center py-2 px-10 mx-auto mt-6 text-xl sm:text-3xl font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+        >
+          Kaydet
+        </button>
+        <button
+          v-else
+          disabled
+          class="flex justify-center py-2 px-10 mx-auto mt-6 text-xl sm:text-3xl font-medium rounded-md text-white bg-green-700"
+        >
+          Kaydedildi
+        </button>
+      </div>
+
+      <table class="table-auto mx-auto my-3 text-xl">
+        <thead>
+          <tr>
+            <th class="underline">isim</th>
+            <th class="underline">skor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="score in scores" :key="score.id">
+            <td>{{ score.user_name }}</td>
+            <td>{{ score.score }} ms</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const interval = ref(null);
 const timeout = ref(null);
@@ -67,6 +110,13 @@ const showWaitForGreen = ref(false);
 const showClickNow = ref(false);
 const showTooSoon = ref(false);
 const rank = ref(null);
+const scores = ref([]);
+const userName = ref("");
+const scoreSaved = ref(false);
+
+onMounted(async () => {
+  scores.value = await getScores();
+});
 
 function tooSoon() {
   clearTimeout(timeout.value);
@@ -82,6 +132,7 @@ function startGame() {
   isPlaying.value = true;
   showTooSoon.value = false;
   showWaitForGreen.value = true;
+  scoreSaved.value = false;
 
   delay.value = 2000 + Math.random() * 5000;
   timeout.value = setTimeout(() => {
@@ -113,5 +164,33 @@ function stopTimer() {
   } else {
     rank.value = "Salyangoz hızı 🐌";
   }
+}
+
+async function getScores() {
+  const res = await fetch(
+    "http://127.0.0.1:8090/api/collections/reaction_scores/records"
+  );
+  const data = await res.json();
+  return data?.items;
+}
+
+async function saveScore() {
+  if (!userName.value) {
+    alert("İsim girmeyi unuttun!");
+    return;
+  }
+
+  await fetch("http://127.0.0.1:8090/api/collections/reaction_scores/records", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_name: userName.value,
+      score: reactionTime.value,
+    }),
+  });
+  scores.value = await getScores();
+  scoreSaved.value = true;
 }
 </script>

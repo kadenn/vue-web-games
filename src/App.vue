@@ -12,4 +12,3 @@
 import FooterNav from "@/components/FooterNav.vue";
 import HeaderNav from "@/components/HeaderNav.vue";
 </script>
-BotNav
