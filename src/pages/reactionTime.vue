@@ -79,7 +79,7 @@
         </button>
       </div>
     </div>
-    <table class="table-auto mx-auto my-3 text-xl">
+    <table v-if="scores.length" class="table-auto mx-auto my-3 text-xl">
       <thead>
         <tr>
           <th class="underline">isim</th>
