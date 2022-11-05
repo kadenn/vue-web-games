@@ -3,7 +3,7 @@
     <h2 id="footer-navigation" class="sr-only">Footer</h2>
     <div class="max-w-7xl mx-auto py-3 px-7 flex justify-between">
       <router-link class="transition hover:rotate-180 active:rotate-180" to="/">
-        <span class="sr-only">{{ Poker }}</span>
+        <span class="sr-only"> Poker </span>
         <Poker class="h-8 w-8 md:h-10 md:w-10" />
       </router-link>
 
@@ -12,7 +12,7 @@
         target="_blank"
         class="transition hover:rotate-180 active:rotate-180"
       >
-        <span class="sr-only">{{ TikTok }}</span>
+        <span class="sr-only"> TikTok </span>
         <Tiktok class="h-8 w-8 md:h-10 md:w-10" />
       </a>
 
@@ -21,7 +21,7 @@
         target="_blank"
         class="transition hover:rotate-180 active:rotate-180"
       >
-        <span class="sr-only">{{ Github }}</span>
+        <span class="sr-only"> Github </span>
         <Github class="h-8 w-8 md:h-10 md:w-10" />
       </a>
     </div>
