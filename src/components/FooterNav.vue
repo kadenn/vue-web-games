@@ -17,7 +17,7 @@
       </a>
 
       <a
-        href="https://github.com/kadenn/vue-web-games/"
+        href="https://github.com/kadenn/web-games/"
         target="_blank"
         class="transition hover:rotate-180 active:rotate-180"
       >
