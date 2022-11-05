@@ -98,6 +98,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
+import swal from "sweetalert";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const interval = ref(null);
@@ -175,11 +176,11 @@ async function getScores() {
 
 async function saveScore() {
   if (!name.value) {
-    alert(t("Please enter a username") + "!");
+    swal("Error", t("Please enter a username"), "error");
     return;
   }
 
-  await fetch(apiUrl, {
+  const res = await fetch(apiUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -189,6 +190,13 @@ async function saveScore() {
       score: reactionTime.value,
     }),
   });
+
+  if (!res.ok) {
+    const err = await res.json();
+    swal("Error", err?.data.name.message, "error");
+    return;
+  }
+
   scores.value = await getScores();
   scoreSaved.value = true;
 }
