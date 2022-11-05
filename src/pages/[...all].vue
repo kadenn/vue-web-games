@@ -7,7 +7,7 @@
           <h1
             class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl"
           >
-            Page not found
+            {{ t("Page not found") }}
           </h1>
         </div>
         <div
@@ -17,10 +17,16 @@
             to="/"
             class="inline-flex items-center px-4 py-2 border border-transparent lg:text-xl text-lg font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            Go back home
+            {{ t("Go back home") }}
           </router-link>
         </div>
       </div>
     </main>
   </div>
 </template>
+
+<script setup>
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+</script>

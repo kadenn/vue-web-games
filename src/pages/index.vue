@@ -1,5 +1,8 @@
 <script setup>
 import Chicken from "@/assets/chicken.svg";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -7,7 +10,7 @@ import Chicken from "@/assets/chicken.svg";
     class="mx-2 sm:mx-auto max-w-2xl my-4 p-4 bg-stone-200 rounded-lg shadow-lg border-2 border-black flex flex-col text-center"
   >
     <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">
-      Reaksiyon testi ⚡
+      {{ t("Reaction test") }} ⚡
     </h2>
 
     <figure class="mx-auto p-3">
@@ -18,7 +21,7 @@ import Chicken from "@/assets/chicken.svg";
       to="/reactiontime"
       class="flex justify-center py-2 px-10 mx-auto my-4 text-xl sm:text-3xl font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
     >
-      Oyna
+      {{ t("Play") }}
     </router-link>
   </div>
 </template>

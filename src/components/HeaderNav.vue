@@ -6,10 +6,18 @@
         <span class="sr-only">{{ Poker }}</span>
         <Poker class="h-8 w-8 md:h-10 md:w-10" />
       </router-link>
+
+      <div class="text-4xl">
+        <button class="m-1" @click="locale = 'en'">🇬🇧</button>
+        <button class="m-1" @click="locale = 'tr'">🇹🇷</button>
+      </div>
     </div>
   </footer>
 </template>
 
 <script setup>
 import Poker from "@/assets/poker.svg";
+import { useI18n } from "vue-i18n";
+
+const { locale } = useI18n();
 </script>
