@@ -8,8 +8,8 @@
       </router-link>
 
       <div class="text-4xl leading-8 md:leading-10">
-        <a class="mx-1" @click="locale = 'en'">🇬🇧</a>
-        <a class="mx-1" @click="locale = 'tr'">🇹🇷</a>
+        <button class="mx-1" @click="locale = 'en'">🇬🇧</button>
+        <button class="mx-1" @click="locale = 'tr'">🇹🇷</button>
       </div>
     </div>
   </header>
