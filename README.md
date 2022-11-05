@@ -1,4 +1,4 @@
-# Vue Web Games
+# Web Games
 
-Simple web games made with Vue
+Simple web games
 
