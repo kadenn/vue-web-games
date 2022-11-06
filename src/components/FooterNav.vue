@@ -7,6 +7,12 @@
         <Poker class="h-8 w-8 md:h-10 md:w-10" />
       </router-link>
 
+      <p
+        class="my-auto text-center text-md sm:text-lg text-gray-600 font-semibold"
+      >
+        Made with ❤️ on 🌏
+      </p>
+
       <a
         href="https://github.com/kadenn/web-games/"
         target="_blank"
