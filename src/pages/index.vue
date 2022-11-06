@@ -1,11 +1,14 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
+import { onBeforeMount } from "vue";
 
 const { t } = useI18n();
 const router = useRouter();
 
-router.push("reactionTime");
+onBeforeMount(() => {
+  router.push("reactionTime");
+});
 </script>
 
 <template>
