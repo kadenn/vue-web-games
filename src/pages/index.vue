@@ -3,10 +3,11 @@ import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { onBeforeMount } from "vue";
 
-const { t } = useI18n();
+const { locale } = useI18n();
 const router = useRouter();
 
 onBeforeMount(() => {
+  locale.value = "tr";
   router.push("reactionTime");
 });
 </script>

@@ -18,7 +18,7 @@ const messages = Object.fromEntries(
 
 const i18n = createI18n({
   legacy: false,
-  locale: "tr",
+  locale: "en",
   messages: messages,
 });
 
