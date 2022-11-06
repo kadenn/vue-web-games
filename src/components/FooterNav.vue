@@ -8,15 +8,6 @@
       </router-link>
 
       <a
-        href="https://www.tiktok.com/@utkucemokten/"
-        target="_blank"
-        class="transition hover:rotate-180 active:rotate-180"
-      >
-        <span class="sr-only"> TikTok </span>
-        <Tiktok class="h-8 w-8 md:h-10 md:w-10" />
-      </a>
-
-      <a
         href="https://github.com/kadenn/web-games/"
         target="_blank"
         class="transition hover:rotate-180 active:rotate-180"
@@ -29,7 +20,6 @@
 </template>
 
 <script setup>
-import Tiktok from "@/assets/tiktok.svg";
 import Github from "@/assets/github.svg";
 import Poker from "@/assets/poker.svg";
 </script>

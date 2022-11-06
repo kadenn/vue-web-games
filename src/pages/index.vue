@@ -1,27 +1,22 @@
 <script setup>
-import Chicken from "@/assets/chicken.svg";
+import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 
 const { t } = useI18n();
+const router = useRouter();
+
+onMounted(() => {
+  router.push("reactionTime");
+});
 </script>
 
 <template>
   <div
     class="mx-2 sm:mx-auto max-w-2xl my-4 p-4 bg-stone-200 rounded-lg shadow-lg border-2 border-black flex flex-col text-center"
   >
-    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">
-      {{ t("Reaction test") }} ⚡
-    </h2>
-
-    <figure class="mx-auto p-3">
-      <Chicken />
-    </figure>
-
-    <router-link
-      to="/reactiontime"
-      class="flex justify-center py-2 px-10 mx-auto my-4 text-xl sm:text-3xl font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-    >
-      {{ t("Play") }}
-    </router-link>
+    <h1 class="text-4xl sm:text-5xl font-semibold text-gray-900">
+      {{ t("Web Games") }}
+    </h1>
   </div>
 </template>

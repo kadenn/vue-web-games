@@ -1,9 +1,12 @@
 <template>
   <div class="mx-2 sm:mx-auto max-w-2xl my-4 flex flex-col text-center">
     <div class="bg-stone-200 rounded-lg shadow-lg p-4 border-2 border-black">
-      <h1 class="mb-3 text-2xl sm:text-3xl font-semibold">
-        {{ t("Reaction test") }} ⚡
-      </h1>
+      <div class="flex justify-center">
+        <h1 class="mb-3 text-2xl sm:text-3xl font-semibold">
+          {{ t("Reaction test") }}
+        </h1>
+        <Chicken class="sm:w-8 sm:h-8 w-7 h-7 mx-2" />
+      </div>
 
       <p class="mb-3 text-xl">
         {{ t("Measure your visual reflexes with reaction test") }}
@@ -59,7 +62,7 @@
           type="text"
           class="text-xl rounded-md px-1 mx-1"
           v-model="name"
-          placeholder="Ninja Utku"
+          placeholder="Ninja User"
         />
 
         <button
@@ -99,6 +102,7 @@
 import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import swal from "sweetalert";
+import Chicken from "@/assets/chicken.svg";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const interval = ref(null);
