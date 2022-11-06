@@ -1,4 +1,3 @@
-# Web Games
+# Web Games Win
 
-Simple web games
-
+Web Games Win aims to provide easy and fun games that you can play in any browser.
