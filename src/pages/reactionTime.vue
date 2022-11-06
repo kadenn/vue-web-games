@@ -158,17 +158,17 @@ function stopTimer() {
   showResults.value = true;
 
   if (reactionTime.value < 100) {
-    rank.value = t("Impressive") + "🐈";
+    rank.value = t("Impressive") + " 🐈";
   } else if (reactionTime.value < 200) {
-    rank.value = t("Ninja fingers") + "🥷🏼";
+    rank.value = t("Ninja fingers") + " 🥷🏼";
   } else if (reactionTime.value < 300) {
-    rank.value = t("Rapid reflexes") + "🐿️";
+    rank.value = t("Rapid reflexes") + " 🐿️";
   } else if (reactionTime.value < 400) {
-    rank.value = t("Average reflexes") + "🐒";
+    rank.value = t("Average reflexes") + " 🐒";
   } else if (reactionTime.value < 500) {
-    rank.value = t("Snail pace") + "🐌";
+    rank.value = t("Snail pace") + " 🐌";
   } else {
-    rank.value = t("Slow poke") + "🐼";
+    rank.value = t("Slow poke") + " 🐼";
   }
 }
 
