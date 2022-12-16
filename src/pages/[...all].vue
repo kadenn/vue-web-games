@@ -1,9 +1,9 @@
 <template>
-  <div class="px-4 pt-32">
-    <main class="sm:flex">
+  <div class="grid h-full place-items-center">
+    <div class="mx-2 my-4 flex">
       <p class="text-4xl font-extrabold text-blue-500 sm:text-5xl">404</p>
-      <div class="sm:ml-6">
-        <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+      <div class="ml-3 sm:ml-6">
+        <div class="border-l sm:border-gray-200 pl-3 sm:pl-6">
           <h1
             class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl"
           >
@@ -11,7 +11,7 @@
           </h1>
         </div>
         <div
-          class="mt-4 sm:mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6"
+          class="mt-4 sm:mt-10 flex space-x-3 border-l border-transparent pl-6"
         >
           <router-link
             to="/"
@@ -21,7 +21,7 @@
           </router-link>
         </div>
       </div>
-    </main>
+    </div>
   </div>
 </template>
 

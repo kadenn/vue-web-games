@@ -107,7 +107,7 @@ async function saveScore() {
 </script>
 
 <template>
-  <div class="mx-2 sm:mx-auto max-w-2xl my-4 flex flex-col text-center">
+  <div class="mx-2 my-4 sm:mx-auto max-w-2xl flex flex-col text-center">
     <div class="bg-stone-200 rounded-lg shadow-lg p-4 border-2 border-black">
       <div class="flex justify-center">
         <h1 class="mb-3 text-2xl sm:text-3xl font-semibold">
