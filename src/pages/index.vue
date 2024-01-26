@@ -4,7 +4,6 @@ import { useI18n } from "vue-i18n";
 import swal from "sweetalert";
 import Chicken from "@/assets/chicken.svg";
 
-const apiUrl = import.meta.env.VITE_API_URL;
 const interval = ref(null);
 const timeout = ref(null);
 const reactionTime = ref(0);
@@ -19,10 +18,6 @@ const scores = ref([]);
 const name = ref("");
 const scoreSaved = ref(false);
 const { t } = useI18n();
-
-onMounted(async () => {
-  scores.value = await getScores();
-});
 
 function tooSoon() {
   clearTimeout(timeout.value);
@@ -72,36 +67,12 @@ function stopTimer() {
   }
 }
 
-async function getScores() {
-  const res = await fetch(apiUrl);
-  const scores = await res.json();
-  return scores?.items;
-}
-
 async function saveScore() {
   if (!name.value) {
     swal("Error", t("Please enter a username"), "error");
     return;
   }
 
-  const res = await fetch(apiUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: name.value,
-      score: reactionTime.value,
-    }),
-  });
-
-  if (!res.ok) {
-    const err = await res.json();
-    swal("Error", err?.data.name.message, "error");
-    return;
-  }
-
-  scores.value = await getScores();
   scoreSaved.value = true;
 }
 </script>
